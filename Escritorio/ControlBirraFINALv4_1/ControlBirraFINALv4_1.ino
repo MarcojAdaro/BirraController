@@ -84,6 +84,9 @@ int scroll = 0;                         //Used in Menu(). Stores numerical value
 int button = 0;                         //Sets scroll when a button is pressed. Acts on it when release
 int menu = 4;                           //Stores the value of the menu. Used in Menu()
 int FunctionChoice;                     //Stores the value of the selected function
+
+int ChoiceButton;
+
 float Answer;                           //where the answer is stored.
 
 float A;                                //holds the values being computed
@@ -153,12 +156,16 @@ fermentar(2,ReleMotor,RelePin3, temp3,value3,20,18,4,3);
 
 if(apagar[0] && apagar[1] && apagar[2]) digitalWrite(ReleMotor, LOW);
 //------------------------------------------------------------------------//
-switch (button){               // Imprime un texto según el valor de la tecla detectada
-  case BUTTON_RIGHT:
+ChoiceButton=Menu2();
+
+switch (ChoiceButton){               // Imprime un texto según el valor de la tecla detectada
+  case 0:
   {
-    delay (500);
-    derecha = derecha +1;
-    if (derecha==1){
+    ChoiceButton=1;
+    menu=1;
+  }
+  case 1:
+  {
       lcd.print("F1- ");
       lcd.print(temp1);      // display seconds elapsed since power-up
       lcd.print("C ");
@@ -167,8 +174,10 @@ switch (button){               // Imprime un texto según el valor de la tecla d
       }else {
         lcd.print(" Mad");        
       }
+      break;
     }
-    if (derecha==2){
+    case 2:
+    {
       lcd.print("F2- ");
       lcd.print(temp2);      // display seconds elapsed since power-up
       lcd.print("C ");
@@ -177,8 +186,10 @@ switch (button){               // Imprime un texto según el valor de la tecla d
       }else {
         lcd.print(" Mad");        
       }
+      break;
      }
-    if (derecha==3){
+    case 3:
+    {
       lcd.print("F3- ");
       lcd.print(temp3);      // display seconds elapsed since power-up
       lcd.print("C ");
@@ -187,13 +198,17 @@ switch (button){               // Imprime un texto según el valor de la tecla d
       }else {
         lcd.print(" Mad");        
       }
-      derecha = 0;
+      break;
     }
-    
-    break;
+    case 4:
+    {
+      ChoiceButton=1;
+      menu=1;
+      break;  
+    }
      
   }
-}
+
  
 delay(100);                     
 }

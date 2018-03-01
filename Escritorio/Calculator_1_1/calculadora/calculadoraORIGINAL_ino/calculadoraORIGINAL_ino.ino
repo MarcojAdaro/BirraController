@@ -19,7 +19,6 @@
 
 
 #include <Wire.h>
-
 #include <LiquidCrystal.h>   // include LCD library
 
 /*--------------------------------------------------------------------------------------
