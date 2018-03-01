@@ -15,6 +15,7 @@ DeviceAddress address4 = {0x28, 0xE5, 0x6E, 0x1,  0x0,  0x0,  0x80, 0x6C};  /// 
 LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
 int lcd_key     = 0;
 int adc_key_in  = 0;
+//asdasd
 //-------------Configuro boton derecho------------------------------//
 #define btnDERECHA      0
 int derecha=0;
