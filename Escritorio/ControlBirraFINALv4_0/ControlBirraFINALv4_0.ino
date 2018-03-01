@@ -1,3 +1,4 @@
+// VERSION FUNCIONANDO
 #include <OneWire.h>                
 #include <DallasTemperature.h>
 #include <LiquidCrystal.h>
