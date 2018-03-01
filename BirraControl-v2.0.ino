@@ -1,4 +1,4 @@
-// VERSION FUNCIONANDO
+// VERSION FUNCIONANDO EN TOSKA
 #include <OneWire.h>                
 #include <DallasTemperature.h>
 #include <LiquidCrystal.h>
