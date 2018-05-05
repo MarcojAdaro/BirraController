@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	alert('Prueba')
+  alert("Pruba")
   $.ajax({
     type: 'POST',
     url: 'php/listas.php'
