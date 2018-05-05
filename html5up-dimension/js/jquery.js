@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	alert('Prueba')
+
   $.ajax({
     type: 'POST',
     url: 'php/listas.php'
@@ -11,3 +11,18 @@ $(document).ready(function(){
     alert('Hubo un errror al cargar las listas_rep')
   })
 })
+$('#listas').on('change', function(){
+
+    var id = $('#lista').val()
+    $.ajax({
+      type: 'POST',
+      url: 'php/cargar_birra.php',
+      data: {'id': id}
+    })
+    .done(function(listas_rep){
+      $('#Cocinadas').val(listas_rep)
+    })
+    .fail(function(){
+      alert('Hubo un errror al cargar los vídeos')
+    })
+  })
