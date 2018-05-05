@@ -24,41 +24,88 @@ function dimePropiedades(){
 	alert(texto)
 }
 </script>
-
-
-
-  </head>
-  <body>
-  		<div class="container">
-  <div class="page-header">
-  		<h1 align="center" color="blue">Cerveceria Amiga</h1> 
-  		</div>
-  		</div>
-
-	        <div class="container">
-			   		
-					        
-					        	<div class="row">
-					        				<div class="col-sm-2"></div>
-					        				<div class="col-sm-3 ">
-												<img class="d-block w-100" src="images/FermentadorVectorizado.png" alt="First slide">
-											</div>
-					        		
-					        				<div class="col-sm-3 ">
-											<form name="formul">
-													Tipo de cerveza:
-													<select name="miSelect" id='listas'>
-													<option value="10">Muy bien
-													<option value="5" selected>Regular
-													<option value="0">Muy mal
-													</select>
-													
-													<input type=button value="Dime propiedades" onclick="dimePropiedades()">
-											</form>
-					        				<div class="col-sm-2"></div>
-					        	</div>
-					       
- 		</div>
+</head>
+	<body>
+	<div class="container">
+		<div class="page-header">
+  			<h1 align="center" color="blue">FERMENDATOR N</h1> 
+		</div>
+	</div>
+	<div class="container">        
+		<div class="row">
+	    	<div class="col-sm-2"></div>
+	        	<div class="col-sm-4 ">
+					<img class="d-block w-100" src="images/FermentadorVectorizado.png" alt="First slide">
+				</div>	
+	        	<div class="col-sm-5 ">
+		        	<table>
+	    	    	<tr>
+					<form name="formul">
+					<td><h3>Tipo de cerveza:</h3></td>
+					<td><select class="form-control" name="miSelect" id='listas' >
+						</select></td>
+					</form>
+					</tr>
+					</table>
+					<div>
+						<h5>Historial</h5>
+						<table class="table" >
+						<tr class="table-warning">
+						<td>Cocinadas:</td>
+						<td> <input type="text" class="form-control" readonly=”readonly” name="Cocinadas" id="Cocinadas" value=""> </td>
+						</tr>
+						<tr class="table-warning">
+						<td>Ultima vez:</td>
+						<td> <input type="text" class="form-control" readonly=”readonly” name="Ultima vez" id="Ultima"> </td>
+						</tr>	
+						</table>
+					</div>
+					<div>
+						<h5>Modo fermentador</h5>
+						<table class="table">
+						<tr class="table-danger">
+						<td>Temperatura MAX:</td>
+						<td> <input type="text" class="form-control" readonly=”readonly” name="TempMax" id="TempMax"> </td>	
+						</tr>
+						<tr class="table-info">
+						<td>Temperatura Min:</td>
+						<td> <input type="text" class="form-control" readonly=”readonly” name="TempMin" id="TempMin"> </td>	
+						</tr>
+						</table>
+					</div>
+					<div>
+						<h5>Modo Maduracion</h5>
+						<table class="table">
+						<tr class="table-danger">
+						<td>Temperatura MAX:</td>
+						<td> <input type="text" class="form-control" readonly=”readonly” name="TempMax" id="TempMax"> </td>	
+						</tr>
+						<tr class="table-info">
+						<td>Temperatura Min:</td>
+						<td> <input type="text" class="form-control" readonly=”readonly” name="TempMin" id="TempMin"> </td>	
+						</tr>
+						</table>
+					</div>
+					<div>
+						<h5>Otros</h5>
+						<table class="table">
+						<tr class="table-success">
+						<td>Inercia del Fluido:</td>
+						<td> <input type="text" class="form-control" readonly=”readonly” name="Inercia" id="Inercia"> </td>	
+						</tr>
+						<tr class="table-success">
+						<td>Cantidad de Litros:</td>
+						<td> <input type="text" class="form-control" readonly=”readonly” name="Litros" id="Litros"> </td>	
+						</tr>
+						<tr class="table-success">
+						<td>Tiempo Estimado:</td>
+						<td> <input type="text" class="form-control" readonly=”readonly” name="Tiempo" id="Tiempo"> </td>	
+						</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+	   </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
