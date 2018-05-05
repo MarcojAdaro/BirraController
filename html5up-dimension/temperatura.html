@@ -1,117 +1,103 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
+  	<title>TOSKA Cerveceria</title>
+  	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="shortcut icon" href="images/logovetorizado.png"/>
+   
 
-    <title>TOSKA Cerveceria</title>
-
-
-<script>
-function dimePropiedades(){
-	var texto
-	texto = "El numero de opciones del select: " + document.formul.miSelect.length
-	var indice = document.formul.miSelect.selectedIndex
-	texto += "\nIndice de la opcion escogida: " + indice
-	var valor = document.formul.miSelect.options[indice].value
-	texto += "\nValor de la opcion escogida: " + valor
-	var textoEscogido = document.formul.miSelect.options[indice].text
-	texto += "\nTexto de la opcion escogida: " + textoEscogido
-	alert(texto)
-}
-</script>
 </head>
 	<body>
 	<div class="container">
 		<div class="page-header">
-  			<h1 align="center" color="blue">FERMENDATOR N</h1> 
+  			<h1 align="center" color="blue"><p class="text-white">FERMENDATOR</p></h1> 
 		</div>
 	</div>
 	<div class="container">        
 		<div class="row">
-	    	<div class="col-sm-2"></div>
-	        	<div class="col-sm-4 ">
-					<img class="d-block w-100" src="images/FermentadorVectorizado.png" alt="First slide">
-				</div>	
-	        	<div class="col-sm-5 ">
-		        	<table>
-	    	    	<tr>
-					<form name="formul">
-					<td><h3>Tipo de cerveza:</h3></td>
-					<td><select class="form-control" name="miSelect" id='listas' >
-						</select></td>
-					</form>
+	    	<div class="col-sm-1"></div>
+        	<div class="col-sm-5 ">
+				<img class="d-block w-100" src="images/FermentadorVectorizado.png" alt="First slide">
+			</div>	
+        	<div class="col-sm-5 ">
+	        	<table>
+    	    	<tr>
+				<form name="formul">
+				<td><h3><p class="text-white">Tipo de cerveza: </p></h3></td>
+				<td><select class="form-control" name="miSelect" id='listas' >
+					</select></td>
+				</form>
+				</tr>
+				</table>
+				<div>
+					<h5><p class="text-white">Historial</p></h5>
+					<table class="table" >
+					<tr class="table-warning">
+					<td><p class="text-black">Cocinadas:</p></td>
+					<td> <input type="text" class="form-control" readonly=”readonly” name="Cocinadas" id="Cocinadas" value=""> </td>
+					</tr>
+					<tr class="table-warning">
+					<td><p class="text-black">Ultima vez:</p></td>
+					<td> <input type="text" class="form-control" readonly=”readonly” name="Ultima vez" id="Ultima"> </td>
+					</tr>	
+					</table>
+				</div>
+				<div>
+					<h5><p class="text-white">Modo fermentador</p></h5>
+					<table class="table">
+					<tr class="table-danger">
+					<td><p class="text-black">Temperatura MAX:</p></td>
+					<td> <input type="text" class="form-control" readonly=”readonly” name="TempMax" id="TempMaxF"> </td>	
+					</tr>
+					<tr class="table-info">
+					<td><p class="text-black">Temperatura Min:</p></td>
+					<td> <input type="text" class="form-control" readonly=”readonly” name="TempMin" id="TempMinF"> </td>	
 					</tr>
 					</table>
-					<div>
-						<h5>Historial</h5>
-						<table class="table" >
-						<tr class="table-warning">
-						<td>Cocinadas:</td>
-						<td> <input type="text" class="form-control" readonly=”readonly” name="Cocinadas" id="Cocinadas" value=""> </td>
-						</tr>
-						<tr class="table-warning">
-						<td>Ultima vez:</td>
-						<td> <input type="text" class="form-control" readonly=”readonly” name="Ultima vez" id="Ultima"> </td>
-						</tr>	
-						</table>
-					</div>
-					<div>
-						<h5>Modo fermentador</h5>
-						<table class="table">
-						<tr class="table-danger">
-						<td>Temperatura MAX:</td>
-						<td> <input type="text" class="form-control" readonly=”readonly” name="TempMax" id="TempMax"> </td>	
-						</tr>
-						<tr class="table-info">
-						<td>Temperatura Min:</td>
-						<td> <input type="text" class="form-control" readonly=”readonly” name="TempMin" id="TempMin"> </td>	
-						</tr>
-						</table>
-					</div>
-					<div>
-						<h5>Modo Maduracion</h5>
-						<table class="table">
-						<tr class="table-danger">
-						<td>Temperatura MAX:</td>
-						<td> <input type="text" class="form-control" readonly=”readonly” name="TempMax" id="TempMax"> </td>	
-						</tr>
-						<tr class="table-info">
-						<td>Temperatura Min:</td>
-						<td> <input type="text" class="form-control" readonly=”readonly” name="TempMin" id="TempMin"> </td>	
-						</tr>
-						</table>
-					</div>
-					<div>
-						<h5>Otros</h5>
-						<table class="table">
-						<tr class="table-success">
-						<td>Inercia del Fluido:</td>
-						<td> <input type="text" class="form-control" readonly=”readonly” name="Inercia" id="Inercia"> </td>	
-						</tr>
-						<tr class="table-success">
-						<td>Cantidad de Litros:</td>
-						<td> <input type="text" class="form-control" readonly=”readonly” name="Litros" id="Litros"> </td>	
-						</tr>
-						<tr class="table-success">
-						<td>Tiempo Estimado:</td>
-						<td> <input type="text" class="form-control" readonly=”readonly” name="Tiempo" id="Tiempo"> </td>	
-						</tr>
-						</table>
-					</div>
+				</div>
+				<div>
+					<h5><p class="text-white">Modo Maduracion</p></h5>
+					<table class="table">
+					<tr class="table-danger">
+					<td><p class="text-black">Temperatura MAX:</p></td>
+					<td> <input type="text" class="form-control" readonly=”readonly” name="TempMax" id="TempMaxM"> </td>	
+					</tr>
+					<tr class="table-info">
+					<td><p class="text-black">Temperatura Min:</p></td>
+					<td> <input type="text" class="form-control" readonly=”readonly” name="TempMin" id="TempMinM"> </td>	
+					</tr>
+					</table>
+				</div>
+				<div>
+					<h5><p class="text-white">Otros</p></h5>
+					<table class="table">
+					<tr class="table-success">
+					<td><p class="text-black">Inercia del Fluido:</p></td>
+					<td> <input type="text" class="form-control" readonly=”readonly” name="Inercia" id="Inercia"> </td>	
+					</tr>
+					<tr class="table-success">
+					<td><p class="text-black">Cantidad de Litros:</p></td>
+					<td> <input type="text" class="form-control" readonly=”readonly” name="Litros" id="Litros"> </td>	
+					</tr>
+					<tr class="table-success">
+					<td><p class="text-black">Tiempo Estimado:</p></td>
+					<td> <input type="text" class="form-control" readonly=”readonly” name="Tiempo" id="Tiempo"> </td>	
+					</tr>
+					</table>
 				</div>
 			</div>
-	   </div>
+		</div>
+   </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   	<script type="text/javascript" src="js/jquery.js"></script>
   </body>
 </html>
