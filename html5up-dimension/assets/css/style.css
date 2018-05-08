@@ -1,0 +1,30 @@
+#container{
+	width:1020px;
+	height: 1000px;
+	border:1px solid black;
+	margin: 0 auto;
+	position: relative;
+}
+
+#container>img{
+	width: 500px;
+	height: 1000px;
+	position:absolute;	
+}	
+#container>.btn{
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	border: none;
+	border-radius: 25px;
+	top: 500px;
+	background: black;
+	color: white;
+	font-size: 20px;
+
+}
+#container>#btn2{
+	position: relative;
+	float: right;
+
+}
