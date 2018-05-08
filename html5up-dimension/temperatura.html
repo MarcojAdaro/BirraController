@@ -9,19 +9,50 @@
 		<link rel="shortcut icon" href="images/logovetorizado.png"/>		
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+	
 
 	</head>
 	<body>
 		<div id="container">
-			<img class="slides" src="/images/FermentadorVectorizado.png">
-			<img class="slides" src="/images/FermentadorVectorizado.png">
-			<img class="slides" src="/images/FermentadorVectorizado.png">
-			<button class="btn"  id="btn1">&#10094;</button>
-			<button class="btn"  id="btn2">&#10095;</button>
-		</div>
+			<img class="slides" src="/images/FermentadorVectorizado.png"/>
+			<img class="slides" src="/images/pic05.jpg"/>
+			<img class="slides" src="/images/FermentadorVectorizado.png"/>
+			<button class="btn" onclick="sumarIndex(-1)"  id="btn1">&#10094;</button>
+			<button class="btn" onclick="sumarIndex(1)" id="btn2">&#10095;</button>
+		</div>	
+	
+
+
+
 		<div id="hola">
 		</div>
-		
-		<script type="text/javascript" src="js/jquery2.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.js"></script>
 	</body>
+		<script>
+			var index =1;
+
+			function sumarImagen(n){
+				index= index +1;
+				mostrarImagen(index);
+			}
+
+			mostrarImagen(1);
+			
+			function mostrarImagen(n){
+				var i;
+				var x = document.getElementsByClassName("slides");
+				if(n> x.legth){
+					index =1;
+				}
+				if(n<1){
+					index = x.legth;
+				}
+				for(i=0;i<x.legth;i++){
+					x[i].style.display = "none";
+				}
+				x[index-1].style.display ="block";
+			}
+
+		</script>
 </html>
