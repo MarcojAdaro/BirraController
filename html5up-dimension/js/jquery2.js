@@ -14,13 +14,13 @@ $(document).ready(function(){
 
 $('#listas').on('change', function(){
 
-    var id = $('#lista').val()
+    var tipo = $('#lista').val()
     var i=0;
     $.ajax({
       type: 'POST',
       dataType: "json",
       url: 'php/cargar_birra.php',
-      data: {'id': id}
+      data: {'tipo': tipo}
     })
     .done(function(listas_rep){
       $('#Cocinadas').val(listas_rep.Cocinadas);
@@ -36,6 +36,6 @@ $('#listas').on('change', function(){
       
     })
     .fail(function(){
-      alert('Hubo un errror al cargar los vídeos')
+      alert('Hubo un errror al cargar la base de datos')
     })
   })
