@@ -2,13 +2,13 @@
 
 function conectar(){
 
-/*
+
 $servername= "localhost";
 $username= "root";
 $password= "birra";
 $namebase= "CervezasBase";
-*/
-$conexion = mysqli_connect("localhost", "root", "birra", "CervezasBase");
+
+$conexion = mysqli_connect($servername, $username, $password, $namebase);
 if(!$conexion){
 	echo "Error: No se pudo conectar a MySQL.";
 	

@@ -14,9 +14,13 @@ $(document).ready(function(){
 
 $('#listas').on('change', function(){
 
+<<<<<<< HEAD
     var tipo = $('#lista').val()
     alert($('#lista').val());
     var i=0;
+=======
+    var tipo = $('#listas').val()
+>>>>>>> 8e1dab52110332b44559a336f3a36a2bd09d729b
     $.ajax({
       type: 'POST',
       dataType: "json",

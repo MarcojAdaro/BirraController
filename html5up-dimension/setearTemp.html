@@ -4,46 +4,51 @@
   	<title>TOSKA Cerveceria</title>
   	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 
   
-    <!-- Bootstrap CSS -->
+      <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="shortcut icon" href="images/logovetorizado.png"/>
-   
+    
 
 	</head>
-	<body>
+	<body style="background-color:#212F3D    ;">
 	
-		<div class="container">
+		<div class="container" >
 			<div class="page-header">
-  				<h1 align="center" color="blue"><p class="text-white">FERMENDATOR</p></h1> 
+  				<h1 align="center" ><p class="text-white">SETEO DE FERMENTADORES</p></h1> 
 			</div>
 		</div>
 		<div class="container">        
 			<div class="row">
-	    		<div class="col-sm-1"></div>
-        		<div class="col-sm-5 ">
-					<img class="d-block w-100" src="images/FermentadorVectorizado.png">
-				</div>	
-        		<div class="col-sm-5 ">
-	        		<table>
+	    		<div class="col-sm-2"></div>
+        			
+        		<div class="col-sm-6 ">
+	        		<table align="center" >
     	    		<tr>
-					<form name="formul">
-					<td><h3><p class="text-white">Tipo de cerveza: </p></h3></td>
-					<td><select class="form-control" name="miSelect" id='listas' >
-					</select></td>
-					</form>
+						<form name="formul">
+							<td><h3><p class="text-white">Tipo de cerveza :  </p></h3></td>
+							<td><select class="form-control" name="miSelect" id='listas' >
+							</select></td>
+						</form>
+						<td>
+						<button type="button" id="Editar" class="btn btn-success">Editar</button>
+						</td>
+						<td>
+						<button type="button" id="Agregar" class="btn btn-default ">Agregar</button>
+ 						</td>
 					</tr>
 					</table>
 				<div>
 					<h5><p class="text-white">Historial</p></h5>
 					<table class="table" >
 					<tr class="table-warning">
-					<td><p class="text-black">Cocinadas:</p></td>
-					<td> <input type="text" class="form-control" readonly=”readonly” name="Cocinadas" id="Cocinadas" value=""> </td>
+						<td><p class="text-black">Cocinadas:</p></td>
+						<td> <input style="text-align:center;" type="text" class="form-control" readonly=”readonly” name="Cocinadas" id="Cocinadas" value=""> </td>
 					</tr>
 					<tr class="table-warning">
-					<td><p class="text-black">Ultima vez:</p></td>
-					<td> <input type="text" class="form-control" readonly=”readonly” name="Ultima vez" id="Ultima"> </td>
+						<td><p class="text-black">Ultima vez:</p></td>
+						<td> <input style="text-align:center;" type="text" class="form-control" readonly=”readonly” name="Ultima vez" id="Ultima"> </td>
 					</tr>	
 					</table>
 				</div>
@@ -51,12 +56,12 @@
 					<h5><p class="text-white">Modo fermentador</p></h5>
 					<table class="table">
 					<tr class="table-danger">
-					<td><p class="text-black">Temperatura MAX:</p></td>
-					<td> <input type="text" class="form-control" readonly=”readonly” name="TempMax" id="TempMaxF"> </td>	
+						<td><p class="text-black">Temperatura MAX:</p></td>
+						<td> <input  style="text-align:center;" type="text" class="form-control" readonly=”readonly” name="TempMax" id="TempMaxF"> </td>	
 					</tr>
 					<tr class="table-info">
-					<td><p class="text-black">Temperatura Min:</p></td>
-					<td> <input type="text" class="form-control" readonly=”readonly” name="TempMin" id="TempMinF"> </td>	
+						<td><p class="text-black">Temperatura Min:</p></td>
+						<td> <input  style="text-align:center;" type="text" class="form-control" readonly=”readonly” name="TempMin" id="TempMinF"> </td>	
 					</tr>
 					</table>
 				</div>
@@ -64,12 +69,12 @@
 					<h5><p class="text-white">Modo Maduracion</p></h5>
 					<table class="table">
 					<tr class="table-danger">
-					<td><p class="text-black">Temperatura MAX:</p></td>
-					<td> <input type="text" class="form-control" readonly=”readonly” name="TempMax" id="TempMaxM"> </td>	
+						<td><p class="text-black">Temperatura MAX:</p></td>
+						<td> <input style="text-align:center;" type="text" class="form-control" readonly=”readonly” name="TempMax" id="TempMaxM"> </td>	
 					</tr>
 					<tr class="table-info">
-					<td><p class="text-black">Temperatura Min:</p></td>
-					<td> <input type="text" class="form-control" readonly=”readonly” name="TempMin" id="TempMinM"> </td>	
+						<td><p class="text-black">Temperatura Min:</p></td>
+						<td> <input style="text-align:center;" type="text" class="form-control" readonly=”readonly” name="TempMin" id="TempMinM"> </td>	
 					</tr>
 					</table>
 				</div>
@@ -77,17 +82,27 @@
 					<h5><p class="text-white">Otros</p></h5>
 					<table class="table">
 					<tr class="table-success">
-					<td><p class="text-black">Inercia del Fluido:</p></td>
-					<td> <input type="text" class="form-control" readonly=”readonly” name="Inercia" id="Inercia"> </td>	
+						<td><p class="text-black">Inercia del Fluido:</p></td>
+						<td> <input style="text-align:center;" type="text" class="form-control" readonly=”readonly” name="Inercia" id="Inercia"> </td>	
 					</tr>
 					<tr class="table-success">
-					<td><p class="text-black">Cantidad de Litros:</p></td>
-					<td> <input type="text" class="form-control" readonly=”readonly” name="Litros" id="Litros"> </td>	
+						<td><p class="text-black">Cantidad de Litros:</p></td>
+						<td> <input style="text-align:center;" type="text" class="form-control" readonly=”readonly” name="Litros" id="Litros"> </td>	
 					</tr>
 					<tr class="table-success">
-					<td><p class="text-black">Tiempo Estimado:</p></td>
-					<td> <input type="text" class="form-control" readonly=”readonly” name="Tiempo" id="Tiempo"> </td>	
+						<td><p class="text-black">Tiempo Estimado:</p></td>
+						<td> <input style="text-align:center;" type="text" class="form-control" readonly=”readonly” name="Tiempo" id="Tiempo"> </td>	
 					</tr>
+					</table>
+				</div>
+				<div align="center">
+					<table>
+						<tr >
+						<td>	<button id="Cancelar" type="button" class="btn btn-warning">Cancelar Coccion</button></td>
+						<td>  </td>
+						<td>  </td>
+						<td><button id="Eliminar" type="button" class="btn btn-danger">Eliminar</button></td>
+						</tr>
 					</table>
 				</div>
 			</div>
