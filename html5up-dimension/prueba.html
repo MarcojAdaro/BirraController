@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
+ 
+    <script>
+    function ponerReadOnly(id)
+    {
+        // Ponemos el atributo de solo lectura
+        $("#"+id).attr("readonly","readonly");
+        // Ponemos una clase para cambiar el color del texto y mostrar que
+        // esta deshabilitado
+        $("#"+id).addClass("readOnly");
+    }
+ 
+    function quitarReadOnly(id)
+    {
+        // Eliminamos el atributo de solo lectura
+        $("#"+id).removeAttr("readonly");
+        // Eliminamos la clase que hace que cambie el color
+        $("#"+id).removeClass("readOnly");
+    }
+ 
+    /**
+     * Mostramos en un alert si esta el atributo de solo lectura activado
+     */
+    function estado(id)
+    {
+        if($("#"+id).attr("readonly"))
+        {
+            alert("Tiene el atributo de solo lectura");
+        }else{
+            alert("NO Tiene el atributo de solo lectura");
+        }
+    }
+    </script>
+ 
+    <style>
+    .readOnly {color:#808080;}
+    input {width:200px;}
+    </style>
+</head>
+ 
+<body>
+ 
+<form>
+    <input type="text" name="nombre" value="cualquier texto" id="idNombre">
+    <br><input type="button" value="poner atributo ReadOnly" onclick="ponerReadOnly('idNombre')">
+    <br><input type="button" value="quitar atributo ReadOnly" onclick="quitarReadOnly('idNombre')">
+    <br><input type="button" value="Estado" onclick="estado('idNombre')">
+</form>
+ 
+</body>
+</html>
