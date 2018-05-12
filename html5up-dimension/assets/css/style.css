@@ -4,12 +4,14 @@
 	border:1px solid black;
 	margin: 0 auto;
 	position: relative;
+
 }
 
 #container>img{
 	width: 500px;
 	height: 1000px;
-	position:absolute;	
+	position:absolute;
+
 }	
 #container>.btn{
 	position: absolute;
