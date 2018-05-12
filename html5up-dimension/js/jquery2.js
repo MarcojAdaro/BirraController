@@ -14,8 +14,7 @@ $(document).ready(function(){
 
 $('#listas').on('change', function(){
 
-    var tipo = $('#lista').val()
-    var i=0;
+    var tipo = $('#listas').val()
     $.ajax({
       type: 'POST',
       dataType: "json",
