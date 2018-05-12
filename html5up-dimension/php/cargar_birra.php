@@ -10,15 +10,10 @@ function getInfo(){
 	//$prueba['Cocinadas']="$tipo";
 	$conexion= conectar();
 	
-	$consulta= "SELECT * FROM CervezaTable WHERE id=".$tipo;
-	if (!($resultado=mysqli_query($conexion, $consulta)))
-		echo "Error:". mysqli_error($conexion);
+	$resultado=consulta($conexion,"","CervezaTable","id",$tipo);
 	//if($resultado= msqli_query ($conexion, $consulta))
 	$fila= mysqli_fetch_array($resultado, MYSQLI_NUM);
 	//echo ($fila[1]);
-	
-	
-	
 
 	foreach ($campos as $campo) {
 
