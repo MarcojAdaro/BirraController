@@ -15,6 +15,7 @@ $(document).ready(function(){
 $('#listas').on('change', function(){
 
     var tipo = $('#lista').val()
+    alert($('#lista').val());
     var i=0;
     $.ajax({
       type: 'POST',
