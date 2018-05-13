@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
   $.ajax({
     type: 'POST',
     url: 'php/listas.php'
@@ -31,11 +30,60 @@ $('#listas').on('change', function(){
       $('#Inercia').val(listas_rep.Inercia);
       $('#Litros').val(listas_rep.Litros);
       $('#Tiempo').val(listas_rep.Tiempo);
-
-      
     })
     .fail(function(){
       alert('Hubo un errror al cargar la base de datos')
     })
   })
+
+$('#Editar').on('click',function(){
+    $('#Cocinadas').removeAttr("readonly");
+    $('#Ultima').removeAttr("readonly");
+    $('#TempMaxF').removeAttr("readonly");;
+    $('#TempMinF').removeAttr("readonly");
+    $('#TempMaxM').removeAttr("readonly");
+    $('#TempMinM').removeAttr("readonly");
+    $('#Inercia').removeAttr("readonly");
+    $('#Litros').removeAttr("readonly");
+    $('#Tiempo').removeAttr("readonly");
+    $('#Confirmar').prop('disabled', false);
+})
+
+$('#Confirmar').on('click',function(){
+    $('#Cocinadas').attr("readonly","readonly");
+    $('#Ultima').attr("readonly","readonly");
+    $('#TempMaxF').attr("readonly","readonly");
+    $('#TempMinF').attr("readonly","readonly");
+    $('#TempMaxM').attr("readonly","readonly");
+    $('#TempMinM').attr("readonly","readonly");
+    $('#Inercia').attr("readonly","readonly");
+    $('#Litros').attr("readonly","readonly");
+    $('#Tiempo').attr("readonly","readonly");
+    $('#Confirmar').prop('disabled', true);
+
+    var Cocinadas= $('#Cocinadas').val();
+    var Ultima = $('#Ultima').val();
+    var TempMaxF = $('#TempMaxF').val();
+    var TempMinF = $('#TempMinF').val();
+    var TempMaxM = $('#TempMaxM').val();
+    var TempMinM = $('#TempMinM').val();
+    var Inercia = $('#Inercia').val();
+    var Litros = $('#Litros').val();
+    var Tiempo = $('#Tiempo').val();
+    var tipo = $('#listas').val();
+    
+    $.ajax({
+      type: 'POST',
+      dataType: "json",
+      url: 'php/update.php',
+      data: {'tipo':tipo,'Cocinadas':Cocinadas,'Ultima':Ultima,'TempMaxF':TempMaxF,'TempMinF':TempMinF,'TempMaxM':TempMaxM, 'TempMinM':TempMinM, 'Inercia':Inercia, 'Litros':Litros, 'Tiempo':Tiempo }
+    })
+    .done(function(){
+      alert("hola");
+    })
+
+    .fail(function(){
+      alert('Hubo')
+    })
+})
 
