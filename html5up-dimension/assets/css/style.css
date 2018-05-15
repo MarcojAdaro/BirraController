@@ -12,18 +12,18 @@ body {
 	border:5px solid black;
 	margin: 0 auto;
 	position: relative;
-	background-color: #212F3D;
-
+	background-color: black;
+/*#212F3D*/
 }
 
 #slides{
 	display:block;
-	margin-left: 250px;
-  	margin-right: 50px;
+	margin-left: 25px;
+  	margin-right: 350px;
 }
 
 #container>img{
-	width: 500px;
+	width: 800px;
 	height: 1000px;
 	position:absolute;
 
