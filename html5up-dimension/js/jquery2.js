@@ -71,7 +71,8 @@ $('#Confirmar').on('click',function(){
     var Litros = $('#Litros').val();
     var Tiempo = $('#Tiempo').val();
     var tipo = $('#listas').val();
-    
+    pr
+
     $.ajax({
       type: 'POST',
       dataType: "json",
@@ -79,11 +80,11 @@ $('#Confirmar').on('click',function(){
       data: {'tipo':tipo,'Cocinadas':Cocinadas,'Ultima':Ultima,'TempMaxF':TempMaxF,'TempMinF':TempMinF,'TempMaxM':TempMaxM, 'TempMinM':TempMinM, 'Inercia':Inercia, 'Litros':Litros, 'Tiempo':Tiempo }
     })
     .done(function(){
-      alert("hola");
+      alert("Se editaron correctamente los datos");
     })
 
     .fail(function(){
-      alert('Hubo')
+      alert('Error al Editar: Vuelva a intentarlo con valores diferentes')
     })
 })
 
