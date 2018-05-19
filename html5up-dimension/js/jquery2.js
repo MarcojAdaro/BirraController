@@ -71,7 +71,6 @@ $('#Confirmar').on('click',function(){
     var Litros = $('#Litros').val();
     var Tiempo = $('#Tiempo').val();
     var tipo = $('#listas').val();
-    pr
 
     $.ajax({
       type: 'POST',
@@ -88,3 +87,21 @@ $('#Confirmar').on('click',function(){
     })
 })
 
+$('#Agregar').on('click',function(){
+	var agregar=prompt("Ingrese la Cerveza ");
+	
+	$.ajax({
+      type: 'POST',
+      dataType: "json",
+      url: 'php/agregar.php',
+      data: {'agregar': agregar}
+    })
+	.done(function(listas_rep){
+    $('#listas').append(listas_rep)
+  	})
+	.fail(function(listas_rep){
+	  alert(listas_rep);
+      alert('Error al Agregar: Vuelva a intentarlo')
+    })
+
+})

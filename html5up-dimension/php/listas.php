@@ -16,7 +16,7 @@ function getBirra(){
 		$birras=mysqli_fetch_array($consulta, MYSQLI_NUM);
 	}while($birras[$j]!="");
 	
-	cerrar($conexion);
+	cerrar($con);
 	return $listas;
 }
 

@@ -21,8 +21,6 @@ function update(){
 		}
 		$i++;
 	}
-
-	return"Hola";
 }
 
 echo json_encode(update());
