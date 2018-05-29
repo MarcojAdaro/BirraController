@@ -10,14 +10,14 @@ function update(){
 	$con=conectar();
 	$tipo="'".$_POST['tipo']."'";
 
-	$consulta=consulta($con,"","CervezaTable","id",$tipo);
+	$consulta=consulta($con,"","CervezaTable","Tipo",$tipo);
 	$filas= mysqli_fetch_array($consulta, MYSQLI_BOTH);
 	
 	$i=2;
 	foreach ($values as $value) {
 
 		if($_POST[$value]!= $filas[$i]){
-			mysqli_query($con,"UPDATE CervezaTable SET ".$campos[$i-2]."='".$_POST[$value]."' WHERE id=".$tipo);
+			mysqli_query($con,"UPDATE CervezaTable SET ".$campos[$i-2]."='".$_POST[$value]."' WHERE Tipo=".$tipo);
 		}
 		$i++;
 	}

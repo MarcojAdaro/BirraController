@@ -10,7 +10,7 @@ function getInfo(){
 	//$prueba['Cocinadas']="$tipo";
 	$conexion= conectar();
 	
-	$resultado=consulta($conexion,"","CervezaTable","id",$tipo);
+	$resultado=consulta($conexion,"","CervezaTable","Tipo",$tipo);
 	//if($resultado= msqli_query ($conexion, $consulta))
 	$fila= mysqli_fetch_array($resultado, MYSQLI_NUM);
 	//echo ($fila[1]);

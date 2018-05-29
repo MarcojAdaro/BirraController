@@ -13,7 +13,7 @@ $(document).ready(function(){
 
 $('#listas').on('change', function(){
 
-    var tipo = $('#listas').val()
+    var tipo = $('#listas option:selected').text();
     $.ajax({
       type: 'POST',
       dataType: "json",
@@ -70,7 +70,7 @@ $('#Confirmar').on('click',function(){
     var Inercia = $('#Inercia').val();
     var Litros = $('#Litros').val();
     var Tiempo = $('#Tiempo').val();
-    var tipo = $('#listas').val();
+    var tipo = $('#listas option:selected').text();
 
     $.ajax({
       type: 'POST',
@@ -88,20 +88,19 @@ $('#Confirmar').on('click',function(){
 })
 
 $('#Agregar').on('click',function(){
-	var agregar=prompt("Ingrese la Cerveza ");
-	
+	var add=prompt("Ingrese la Cerveza ");
+
 	$.ajax({
-      type: 'POST',
-      dataType: "json",
-      url: 'php/agregar.php',
-      data: {'agregar': agregar}
-    })
-	.done(function(listas_rep){
-    $('#listas').append(listas_rep)
-  	})
-	.fail(function(listas_rep){
-	  alert(listas_rep);
-      alert('Error al Agregar: Vuelva a intentarlo')
-    })
+    type: 'POST',
+    dataType: "json",
+    url: 'php/agregar.php',
+    data: {'add': add}
+  })
+  .done(function(){
+    location.reload();
+  })
+  .fail(function(){
+    alert('Hubo un errror al cargar las listas_rep')
+  })
 
 })
