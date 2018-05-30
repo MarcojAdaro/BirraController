@@ -17,17 +17,9 @@ function agregar(){
 				echo "Error:". mysqli_error($con);
 				exit();
 		}
-	
-		$query=mysqli_query($con,"SELECT id FROM CervezaTable WHERE Tipo=$tipo");
-	
-		$birras=mysqli_fetch_array($query, MYSQLI_NUM);
-
 	}
-	
-	$last_id['birra']=$birras[0];
-	
-	return $last_id;
-
+	cerrar($con);
+	return "Se agrego con Exito";// NO sirve pero tiene qe estar
 }
 
 echo json_encode(agregar());
