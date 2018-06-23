@@ -24,18 +24,36 @@
         		<div class="col-sm-6 ">
 	        		<table align="center" >
     	    		<tr>
+    	    			<td>
 						<form name="formul">
-							<td><h3><p class="text-white">Tipo de cerveza :  </p></h2></td>
+							<td><h4><p class="text-white">Tipo de cerveza :  </p></h4></td>
 							<td><select class="form-control" name="miSelect" id='listas' >
 							</select></td>
 						</form>
-						<td>
-						<button type="button" id="Editar" class="btn btn-success">Editar</button>
 						</td>
 						<td>
+						<button type="button" id="Editar" class="btn btn-success"> Editar </button>
+						</td>
+
+						<td>
 						<button type="button" id="Agregar" class="btn btn-info">Agregar</button>
- 						</td>
+ 						</td>	
 					</tr>
+					<tr>
+						<td>
+						<form name="formul">
+							<td><h4><p class="text-white">Numero de Lote :  </p></h4></td>
+							<td><select class="form-control" name="miSelect" id='listas2' >
+							</select></td>
+						</form>
+						</td>
+						<td>
+						<button type="button" id="AgregarLote" class="btn btn-info">Nuevo</button>
+ 						</td>
+ 						<td>
+							
+						</td>
+					</tr>	
 					</table>
 				<div>
 					<h5><p class="text-white">Historial</p></h5>
@@ -100,9 +118,12 @@
 						<td width="200">  </td>
 						<td><button id="Eliminar" type="button" class="btn btn-danger">Eliminar</button></td>
 						<td width="200">  </td>
-						<td><button type="button" id="Confirmar" class="btn btn-success" disabled="disabled" >Confirmar</button></td>
+						<td><button type="button" id="Confirmar" class="btn btn-success" disabled="disabled" >Guardar</button></td>
+						<td width="200">  </td>
+						<td><button type="button" id="Cocinar" class="btn btn-info">Cocinar</button></td>
 						</tr>
 					</table>
+				<div id="dialogConfirm"><span id="spanMessage"></span></div>
 				</div>
 			</div>
 		</div>

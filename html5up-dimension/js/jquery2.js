@@ -10,10 +10,25 @@ $(document).ready(function(){
     alert('Hubo un errror al cargar las listas_rep')
   })
 })
-
 $('#listas').on('change', function(){
+	var tipo = $('#listas option:selected').text();
+    $.ajax({
+      type: 'POST',
+      dataType: "json",
+      url: 'php/cargar_lote.php',
+      data: {'tipo': tipo}
+    })
+    .done(function(listas_rep){
+    	$('#listas2').html(listas_rep)
+    })
+    .fail(function(){
+      alert('Hubo un errror al cargar la base de datos')
+    })
 
-    var tipo = $('#listas option:selected').text();
+})
+
+$('#listas2').on('change', function(){
+    var tipo = $('#listas2 option:selected').text();
     $.ajax({
       type: 'POST',
       dataType: "json",
@@ -100,7 +115,30 @@ $('#Agregar').on('click',function(){
     location.reload();
   })
   .fail(function(){
-    alert('Hubo un errror al cargar las listas_rep')
+    alert('Hubo un errror al agregar la Cerveza')
   })
+
+})
+
+$('#Eliminar').on('click',function(){
+	
+	var del=$('#listas option:selected').text();
+	var confir= confirm("Desea confirmar");
+	if((confir == true) && (del!="Elige una opción")){
+		$.ajax({
+   		type: 'POST',
+    	dataType: "json",
+    	url: 'php/eliminar.php',
+    	data: {'del': del}
+  		})
+  		.done(function(){
+     	 	location.reload();
+  		})
+  		.fail(function(){
+    		alert('Hubo un errror al elimnar la cerveza')
+  		})
+	}
+	else
+		alert("Cancelo exitosamente o no ha seleccionado una Cerveza")	
 
 })
