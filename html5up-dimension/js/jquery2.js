@@ -10,6 +10,7 @@ $(document).ready(function(){
     alert('Hubo un errror al cargar las listas_rep')
   })
 })
+
 $('#listas').on('change', function(){
 	var tipo = $('#listas option:selected').text();
     $.ajax({

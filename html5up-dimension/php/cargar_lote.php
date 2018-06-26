@@ -7,18 +7,21 @@ function getLote(){
 	$i=1;
 	$j=0;
 	$listas = '<option value="0">Elige una opción</option>';
-	$resultado=consulta($conexion,"Lote","CervezaTable as c,Lotes as l","Tipo",$tipo);
 	
+	$resultado=consulta_anidada($conexion,"","CervezaTable as c,Lotes as l","c.id=l.Cerveza and c.Tipo=".$tipo);
+	
+
 	$lote= mysqli_fetch_array($resultado, MYSQLI_NUM);
 	
-	do{
+	while($lote[$j]!=""){
 		$listas .= "<option value='$i'>$lote[$j]</option>";
 		$i++;
-		$lote=mysqli_fetch_array($resultado, MYSQLI_NUM);
-	}while($lote[$j]!="");
+		$lote = mysqli_fetch_array($resultado, MYSQLI_NUM);
+	}
 	
 	
 	cerrar($conexion);
 	return $listas;
 }
+
 echo json_encode(getLote());
