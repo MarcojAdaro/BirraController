@@ -30,7 +30,19 @@ function consulta($conexion,$filtro,$nomTabla,$campo,$busqueda){
 	$consulta= "SELECT ".$filtro." FROM ".$nomTabla;
 	if($campo!= "") $consulta.=" WHERE ".$campo."=".$busqueda;
 
-	//$consulta= "SELECT * FROM CervezaTable WHERE id='2'";
+	if (!($resultado=mysqli_query($conexion, $consulta)))
+		echo "Error:". mysqli_error($conexion);
+
+	return $resultado;
+}
+
+function consulta_anidada($conexion,$filtro,$nomTabla,$campo){
+
+	if($filtro=="")$filtro="*";
+
+	$consulta= "SELECT ".$filtro." FROM ".$nomTabla;
+	$consulta.=" WHERE ".$campo;
+
 
 	if (!($resultado=mysqli_query($conexion, $consulta)))
 		echo "Error:". mysqli_error($conexion);
@@ -39,6 +51,5 @@ function consulta($conexion,$filtro,$nomTabla,$campo,$busqueda){
 }
 
 
-	//conectar();
 
 ?>

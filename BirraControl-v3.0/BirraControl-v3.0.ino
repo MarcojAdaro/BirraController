@@ -1,8 +1,11 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include <LiquidCrystal.h>
+
 //-------------------------------------------------------------------------------------------------//
 #define cant 3
+
+
 //-------------------------------------------------------------------------------------------------//
  OneWire ourWire(3);                //Se establece el pin 3  como bus OneWire
 DallasTemperature sensors(&ourWire); //Se declara una variable u objeto para nuestro sensor
@@ -28,7 +31,9 @@ DeviceAddress address4 = {0x28, 0xFF, 0xE, 0x12, 0x1, 0x17, 0x4, 0x9D};  /// sen
 #define BUTTON_LEFT               4  //
 #define BUTTON_SELECT             5  //
 //------------Seteo la LCD-----------------------------------------//
-LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
+
+
+LiquidCrystal lcd(12, 13, 4, 0, 2, 14);
 int lcd_key     = 0;
 int adc_key_in  = 0;
 //--------------------------Temp max and min de los fermentadores-----------------------//
@@ -37,14 +42,14 @@ float MaxMad[cant],MinMad[cant];
 //------------------------------------------------------------------------------------//
 int derecha=0;
 //----------Configuro los pines para los interruptores--------------------------------//
-int Interruptor1 = A3;
-int Interruptor2 = A4;
-int Interruptor3= A5;
+//int Interruptor1 = D1;
+//int Interruptor2 = D1;
+//int Interruptor3= D1;
 //----------Configuro los pines para los RELES----------------------------------------//
-int RelePin = A1;
-int RelePin2 = 2;
-int RelePin3 = 1;
-int ReleMotor = A2;
+//int RelePin = D1;
+//int RelePin2 = 2;
+//int RelePin3 = 1;
+//int ReleMotor = D1;
 //----------seteo las variables------------------------------------------------------//
 int value[cant];
 int temp[cant];
@@ -73,46 +78,46 @@ void setup() {
 int i;
 delay(1000);
 Serial.begin(9600);
-sensors.begin();               //Se inicia el sensor
-pinMode(Interruptor1, INPUT);
-pinMode(Interruptor2, INPUT);
-pinMode(Interruptor3, INPUT);
-pinMode(RelePin, OUTPUT);
-pinMode(RelePin2, OUTPUT);
-pinMode(RelePin3, OUTPUT);
-pinMode(ReleMotor, OUTPUT);
+//sensors.begin();               //Se inicia el sensor
+//pinMode(Interruptor1, INPUT);
+//pinMode(Interruptor2, INPUT);
+//pinMode(Interruptor3, INPUT);
+//pinMode(RelePin, OUTPUT);
+//pinMode(RelePin2, OUTPUT);
+//pinMode(RelePin3, OUTPUT);
+//pinMode(ReleMotor, OUTPUT);
 pinMode( BUTTON_ADC_PIN, INPUT );         //ensure A0 is an input
 digitalWrite( BUTTON_ADC_PIN, LOW );      //ensure pullup is off on A0
   //lcd backlight control
-digitalWrite( LCD_BACKLIGHT_PIN, HIGH );  //backlight control pin D3 is high (on)
-pinMode( LCD_BACKLIGHT_PIN, OUTPUT );     //D3 is an output
+//digitalWrite( LCD_BACKLIGHT_PIN, HIGH );  //backlight control pin D3 is high (on)
+//pinMode( LCD_BACKLIGHT_PIN, OUTPUT );     //D3 is an output
 lcd.begin(16, 2);                 //LCD de 16 columnas y 2 filas
 bienvenida();
 
-for(i=0;i<cant;i++){
+/*for(i=0;i<cant;i++){
   MaxFerm[i]=20;
   MinFerm[i]=18;
   MaxMad[i]=4;
   MinMad[i]=3;
   value[i]=0;
-  }
+  }*/
 }
 
 void loop() {
 
 lcd.setCursor(0,1);
 button = ReadButtons();  // Lee las teclas
-value[0]= digitalRead(Interruptor1);// paso a digital el interruptor
+/*value[0]= digitalRead(Interruptor1);// paso a digital el interruptor
 value[1]= digitalRead(Interruptor2);
 value[2]= digitalRead(Interruptor3);
 sensors.requestTemperatures();   //envía el comando para obtener las temperaturas
 float temp1= sensors.getTempC(address1);//Se obtiene la temperatura en °C del sensor 1
 float temp2= sensors.getTempC(address2);//Se obtiene la temperatura en °C del sensor 2
 float temp3= sensors.getTempC(address3);//Se obtiene la temperatura en °C del sensor 3
-
+*/
 if(ReadButtons()==BUTTON_RIGHT)
   Menu_Temp(ChoiceButton);
-
+/*
 //--------------------------------FERMENTADOR 1 --------------------------------------------//
 fermentar(0,ReleMotor,RelePin, temp1,value[0],MaxFerm[0],MinFerm[0],MaxMad[0],MinMad[0]);
                                        //    |  |
@@ -125,7 +130,7 @@ fermentar(2,ReleMotor,RelePin3, temp3,value[2],MaxFerm[2],MinFerm[2],MaxMad[2],M
 
 if(apagar[0] && apagar[1] && apagar[2]) digitalWrite(ReleMotor, LOW);
 //------------------------------------------------------------------------------------------//
-ChoiceButton=Menu2(ChoiceButton);
+*/ChoiceButton=Menu2(ChoiceButton);
 
 switch (ChoiceButton){               // Imprime un texto según el valor de la tecla detectada
   case 0:
@@ -136,7 +141,7 @@ switch (ChoiceButton){               // Imprime un texto según el valor de la t
   case 1:
   {
       lcd.print("F1- ");
-      lcd.print(temp1);      // display seconds elapsed since power-up
+      //lcd.print(temp1);      // display seconds elapsed since power-up
       lcd.print("C ");
       if(value[0]==1){
         lcd.print(" Fer");
@@ -148,7 +153,7 @@ switch (ChoiceButton){               // Imprime un texto según el valor de la t
     case 2:
     {
       lcd.print("F2- ");
-      lcd.print(temp2);      // display seconds elapsed since power-up
+      //lcd.print(temp2);      // display seconds elapsed since power-up
       lcd.print("C ");
       if(value[1]==1){
         lcd.print(" Fer");
@@ -160,7 +165,7 @@ switch (ChoiceButton){               // Imprime un texto según el valor de la t
     case 3:
     {
       lcd.print("F3- ");
-      lcd.print(temp3);      // display seconds elapsed since power-up
+      //lcd.print(temp3);      // display seconds elapsed since power-up
       lcd.print("C ");
       if(value[2]==1){
         lcd.print(" Fer");
