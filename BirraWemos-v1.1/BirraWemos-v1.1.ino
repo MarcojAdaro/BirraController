@@ -1,9 +1,11 @@
-#include <OneWire.h>
+/*#include <OneWire.h>
 #include <DallasTemperature.h>
 #include <Wire.h>
 #include <LCD.h>
-#include <LiquidCrystal_I2C.h>
-
+#include <LiquidCrystal_I2C.h>*/
+#include <OneWire.h>
+#include <DallasTemperature.h>
+#include <LiquidCrystal.h>
 //-------------------------------------------------------------------------------------------------//
 #define cant 3
 
@@ -20,10 +22,10 @@ DeviceAddress address4 = {0x28, 0xFF, 0xE, 0x12, 0x1, 0x17, 0x4, 0x9D};  /// sen
 #define BUTTON_ADC_PIN A0  // A0 is the button ADC input
 #define LCD_BACKLIGHT_PIN 10  // D10 controls LCD backlight
 #define RIGHT_10BIT_ADC           0  // right
-#define UP_10BIT_ADC            120  // up
-#define DOWN_10BIT_ADC          280  // down
-#define LEFT_10BIT_ADC          480  // left
-#define SELECT_10BIT_ADC        720  // right
+#define UP_10BIT_ADC            200  // up
+#define DOWN_10BIT_ADC          300  // down
+#define LEFT_10BIT_ADC          500  // left
+#define SELECT_10BIT_ADC        800  // right
 #define BUTTONHYSTERESIS         50  // hysteresis for valid button sensing window
 //-------------Configuro botones------------------------------//
 #define BUTTON_NONE               0  //
@@ -35,8 +37,8 @@ DeviceAddress address4 = {0x28, 0xFF, 0xE, 0x12, 0x1, 0x17, 0x4, 0x9D};  /// sen
 //------------Seteo la LCD-----------------------------------------//
 
 
-LiquidCrystal_I2C  lcd(0x27,2,1,0,4,5,6,7); // 0x27 is the I2C bus address for an unmodified backpack
-
+//LiquidCrystal_I2C  lcd(0x27,2,1,0,4,5,6,7); // 0x27 is the I2C bus address for an unmodified backpack
+LiquidCrystal lcd(12, 13, 4, 0, 2, 14);
 int lcd_key     = 0;
 int adc_key_in  = 0;
 //--------------------------Temp max and min de los fermentadores-----------------------//
@@ -109,7 +111,7 @@ for(i=0;i<cant;i++){
 void loop() {
 
 lcd.setCursor(0,1);
-button = ReadButtons();  // Lee las teclas
+//button = ReadButtons();  // Lee las teclas
 //value[0]= digitalRead(Interruptor1);// paso a digital el interruptor
 //value[1]= digitalRead(Interruptor2);
 //value[2]= digitalRead(Interruptor3);
@@ -183,7 +185,7 @@ switch (ChoiceButton){               // Imprime un texto según el valor de la t
       break;
     }
   }
-delay(100);// Si este delay se queda en la funcion Menu2
+delay(100);// Sin este delay se queda en la funcion Menu2
 }
 
 void fermentar(int n_ferm ,int Motor, int Pin, float temp,int value,float f_max,float f_min,float m_max,float m_min){
@@ -228,7 +230,7 @@ int Menu2 (int menu)
     {
     case BUTTON_UP:
       {
-        Serial.println(MaxMad[ChoiceButton-1]);
+        //Serial.println(MaxMad[ChoiceButton-1]);
         menu = menu +1;
         break;
       }

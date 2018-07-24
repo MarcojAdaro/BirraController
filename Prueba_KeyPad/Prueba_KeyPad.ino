@@ -1,6 +1,7 @@
-#include <LiquidCrystal.h>
-LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
-
+#include <Wire.h>
+//#include <LCD.h>
+#include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C  lcd(0x27,16,2);//2,1,0,4,5,6,7); // 0x27 is the I2C bus address for an unmodified backpack
 
 int lcd_key     = 0;
 int adc_key_in  = 0;
@@ -10,11 +11,13 @@ int adc_key_in  = 0;
 #define btnLEFT   3
 #define btnSELECT 4
 #define btnNONE   5
+#define BUTTON_ADC_PIN A0  
 
 int read_LCD_buttons();  // para leer los botones
 
 int read_LCD_buttons()  
   { adc_key_in = analogRead(0);      // Leemos A0
+    Serial.println(adc_key_in);
     // Mis botones dan:  0, 145, 329,507,743
     // Y ahora los comparamos con un margen comodo
     if (adc_key_in > 900) return btnNONE;     // Ningun boton pulsado 
@@ -28,9 +31,14 @@ int read_LCD_buttons()
   }
   
 void setup() {
-   lcd.begin(16, 2);              // Inicializar el LCD
+  //Serial.begin(9600);
+   //lcd.begin(16, 2);              // Inicializar el LCD
+     // Inicializar el LCD
+      lcd.init();
       lcd.setCursor(0,0);
       lcd.print("Prometec.net");     // print a simple message
+      pinMode( BUTTON_ADC_PIN, INPUT );         //ensure A0 is an input
+      digitalWrite( BUTTON_ADC_PIN, LOW );      //ensure pullup is off on A0
   // put your setup code here, to run once:
 
 }

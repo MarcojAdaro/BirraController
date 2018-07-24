@@ -1,18 +1,21 @@
-#include "FS.h"
 #include <OneWire.h>
 #include <DallasTemperature.h>
-#include <LiquidCrystal.h>
+#include <Wire.h>
+//#include <LCD.h>
+#include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C  lcd(0x27,16,2);//2,1,0,4,5,6,7); // 0x27 is the I2C bus address for an unmodified backpack
+
 //-------------------------------------------------------------------------------------------------//
 #define cant 3
-//-------------------------------CONFIGURACION SENSOR TEMPERATURA-------------------------------------//
- OneWire ourWire(3);                //Se establece el pin 3  como bus OneWire
+//-------------------------------------------------------------------------------------------------//
+ OneWire ourWire(D8);                //Se establece el pin 3  como bus OneWire
 DallasTemperature sensors(&ourWire); //Se declara una variable u objeto para nuestro sensor
-//----------------Seteo las direcciones de los sensores----------------------------------------------//
+//----------Seteo las direcciones de los sensores--------------------------------------------------//
 DeviceAddress address1 = {0x28, 0xFF, 0x6B, 0x10, 0x86, 0x16, 0x5, 0xDB};//dirección del sensor 1
 DeviceAddress address2 = {0x28, 0xFF, 0xD3, 0xA0, 0x94, 0x16, 0x5, 0x3E};//dirección del sensor 2
 DeviceAddress address3 = {0x28, 0xFF, 0x3C, 0xA3, 0x94, 0x16, 0x5, 0x3};//dirección del sensor 3
 DeviceAddress address4 = {0x28, 0xFF, 0xE, 0x12, 0x1, 0x17, 0x4, 0x9D};  /// sensor de repuesto
-//-----------------------Defino Botonera--------------------------------------------------------------//
+//---------------------Defino Botonera--------------------------------------------------------------//
 #define BUTTON_ADC_PIN A0  // A0 is the button ADC input
 #define LCD_BACKLIGHT_PIN 10  // D10 controls LCD backlight
 #define RIGHT_10BIT_ADC           0  // right
@@ -21,32 +24,32 @@ DeviceAddress address4 = {0x28, 0xFF, 0xE, 0x12, 0x1, 0x17, 0x4, 0x9D};  /// sen
 #define LEFT_10BIT_ADC          480  // left
 #define SELECT_10BIT_ADC        720  // right
 #define BUTTONHYSTERESIS         30  // hysteresis for valid button sensing window
-//----------------------------------------Configuro botones-----------------------------------------//
+//-------------Configuro botones------------------------------//
 #define BUTTON_NONE               0  //
 #define BUTTON_RIGHT              1  //
 #define BUTTON_UP                 2  //
 #define BUTTON_DOWN               3  //
 #define BUTTON_LEFT               4  //
 #define BUTTON_SELECT             5  //
-//-----------------------------------Seteo la LCD--------------------------------------------------//
-LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
+//------------Seteo la LCD-----------------------------------------//
+//LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
 int lcd_key     = 0;
 int adc_key_in  = 0;
-//-------------------------------------Temp max and min de los fermentadores-----------------------//
+//--------------------------Temp max and min de los fermentadores-----------------------//
 float MaxFerm[cant],MinFerm[cant];
 float MaxMad[cant],MinMad[cant];
-//-------------------------------------------------------------------------------------------------//
+//------------------------------------------------------------------------------------//
 int derecha=0;
-//----------------------Configuro los pines para los interruptores--------------------------------//
-int Interruptor1 = A3;
-int Interruptor2 = A4;
-int Interruptor3= A5;
-//----------------------Configuro los pines para los RELES----------------------------------------//
-int RelePin = A1;
-int RelePin2 = 2;
-int RelePin3 = 1;
-int ReleMotor = A2;
-//-----------------------seteo las variables------------------------------------------------------//
+//----------Configuro los pines para los interruptores--------------------------------//
+int Interruptor1 = D1;
+int Interruptor2 = D2;
+int Interruptor3= D3;
+//----------Configuro los pines para los RELES----------------------------------------//
+int RelePin = D4;
+int RelePin2 = D5;
+int RelePin3 = D6;
+int ReleMotor = D7;
+//----------seteo las variables------------------------------------------------------//
 int value[cant];
 int temp[cant];
 int prueba1=0;
@@ -55,13 +58,13 @@ int prueba3=0;
 int bandera=0;
 boolean apagar[3];
 //-------------------------------------------------------------------------------------//
-byte buttonJustPressed  = false;        //this will be true after a ReadButtons() call if triggered
-byte buttonJustReleased = false;        //this will be true after a ReadButtons() call if triggered
-byte buttonWas          = BUTTON_NONE;  //used by ReadButtons() for detection of button events
+byte buttonJustPressed  = false;         //this will be true after a ReadButtons() call if triggered
+byte buttonJustReleased = false;         //this will be true after a ReadButtons() call if triggered
+byte buttonWas          = BUTTON_NONE;   //used by ReadButtons() for detection of button events
 int SelectingMenu = true;               //This will be true until the select button is pressed in Menu()
 int scroll = 0;                         //Used in Menu(). Stores numerical value of key pressed
 int button = 0;                         //Sets scroll when a button is pressed. Acts on it when release
-//int menu = 0;                          //Stores the value of the menu. Used in Menu()
+//int menu = 0;                           //Stores the value of the menu. Used in Menu()
 int FunctionChoice;                     //Stores the value of the selected function
 int ChoiceButton=1;
 float Answer;                           //where the answer is stored.
@@ -87,7 +90,8 @@ digitalWrite( BUTTON_ADC_PIN, LOW );      //ensure pullup is off on A0
   //lcd backlight control
 digitalWrite( LCD_BACKLIGHT_PIN, HIGH );  //backlight control pin D3 is high (on)
 pinMode( LCD_BACKLIGHT_PIN, OUTPUT );     //D3 is an output
-lcd.begin(16, 2);                 //LCD de 16 columnas y 2 filas
+//lcd.begin(16, 2);                 //LCD de 16 columnas y 2 filas
+lcd.init();
 bienvenida();
 
 for(i=0;i<cant;i++){
@@ -123,7 +127,7 @@ fermentar(1,ReleMotor,RelePin2, temp2,value[1],MaxFerm[1],MinFerm[1],MaxMad[1],M
 //--------------------------------FERMENTADOR 3---------------------------------------------//
 fermentar(2,ReleMotor,RelePin3, temp3,value[2],MaxFerm[2],MinFerm[2],MaxMad[2],MinMad[2]);
 
-//--------------------------------AND DE MOTOR----------------------------------------------//
+
 if(apagar[0] && apagar[1] && apagar[2]) digitalWrite(ReleMotor, LOW);
 //------------------------------------------------------------------------------------------//
 ChoiceButton=Menu2(ChoiceButton);

@@ -5,7 +5,8 @@
 #include <Wire.h>
 #include <LCD.h>
 #include <LiquidCrystal_I2C.h>
-LiquidCrystal_I2C  lcd(0x27,2,1,0,4,5,6,7); // 0x27 is the I2C bus address for an unmodified backpack
+LiquidCrystal_I2C  lcd(0x27,16,2);//2,1,0,4,5,6,7); // 0x27 is the I2C bus address for an unmodified backpack
+
 
 int readkey;
 long int lastmillis;
@@ -50,27 +51,28 @@ void loop() {
   lcd.print ("  ") ;
   
   readkey=analogRead(0);
-  
-  if (readkey<50) {
+  updateLCDline2();
+  lastmillis = millis();
+  /*if (readkey<50) {
     l2c1='R';
     updateLCDline2();
     lastmillis = millis();
   
   }
-  else if(readkey<176) {
+  else if(readkey<190) {
     l2c1='U';
     l2c2='p';
     updateLCDline2();
     lastmillis = millis();
  
   }
-  else if(readkey<332) {
+  else if(readkey<480) {
     l2c1='D';
     l2c2='n';
     updateLCDline2();
     lastmillis = millis();
  }
-  else if(readkey<525) {
+  else if(readkey<690) {
     l2c1='L';
     updateLCDline2();
     lastmillis = millis();
@@ -91,7 +93,7 @@ else if(readkey<950) {
     updateLCDline2();
     lastmillis = millis();
  
-  }
+  }*/
 
 } 
 
