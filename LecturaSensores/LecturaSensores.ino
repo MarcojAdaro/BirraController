@@ -1,7 +1,7 @@
 #include <OneWire.h>                
 #include <DallasTemperature.h>
  
-OneWire ourWire1(2);                //Se establece el pin 2  como bus OneWire
+OneWire ourWire1(A1);//Se establece el pin 2  como bus OneWire
 OneWire ourWire2(3);                //Se establece el pin 3  como bus OneWire
  
 DallasTemperature sensors1(&ourWire1); //Se declara una variable u objeto para nuestro sensor1
