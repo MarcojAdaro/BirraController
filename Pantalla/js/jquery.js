@@ -9,16 +9,20 @@
 
 
  function refrescarTablaEstadoSala() {
-  alert("Puto");
+
   $("#temperatura").empty();	
   //$("#temperatura").html("puto");
 
   $.ajax({
       type: 'POST',
-      dataType: "json",
-      url: 'php/serial.py',
+      dataType: "text",
+      url: 'php/prueba.py',
     })
     .done(function(listas_rep){
+	alert(listas_rep)
     	$('#temperatura').html(listas_rep)
-    })
+    }) 
+	.fail(function(){
+		alert("fallamos")
+});
 }
