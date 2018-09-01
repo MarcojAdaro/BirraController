@@ -1,8 +1,8 @@
-/*#include <OneWire.h>
+#include <OneWire.h>
 #include <DallasTemperature.h>
 #include <Wire.h>
 #include <LCD.h>
-#include <LiquidCrystal_I2C.h>*/
+#include <LiquidCrystal_I2C.h>
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include <LiquidCrystal.h>
@@ -11,13 +11,13 @@
 
 
 //-------------------------------------------------------------------------------------------------//
-OneWire ourWire(3);                //Se establece el pin 3  como bus OneWire
+OneWire ourWire(0);                //Se establece el pin 3  como bus OneWire
 DallasTemperature sensors(&ourWire); //Se declara una variable u objeto para nuestro sensor
 //----------Seteo las direcciones de los sensores--------------------------------------------------//
 DeviceAddress address1 = {0x28, 0xFF, 0x6B, 0x10, 0x86, 0x16, 0x5, 0xDB};//dirección del sensor 1
 DeviceAddress address2 = {0x28, 0xFF, 0xD3, 0xA0, 0x94, 0x16, 0x5, 0x3E};//dirección del sensor 2
 DeviceAddress address3 = {0x28, 0xFF, 0x3C, 0xA3, 0x94, 0x16, 0x5, 0x3};//dirección del sensor 3
-DeviceAddress address4 = {0x28, 0xFF, 0xE, 0x12, 0x1, 0x17, 0x4, 0x9D};  /// sensor de repuesto
+DeviceAddress address4 = {0x28, 0xFF, 0x8B, 0x4D, 0xC2, 0x16, 0x3, 0x36};  /// sensor de repuesto
 //---------------------Defino Botonera--------------------------------------------------------------//
 #define BUTTON_ADC_PIN A0  // A0 is the button ADC input
 #define LCD_BACKLIGHT_PIN 10  // D10 controls LCD backlight
@@ -82,7 +82,7 @@ void setup() {
 
 int i;
 delay(1000);
-Serial.begin(9600);
+Serial.begin(115200);
 sensors.begin();               //Se inicia el sensor
 //pinMode(Interruptor1, INPUT);
 //pinMode(Interruptor2, INPUT);
@@ -115,11 +115,11 @@ lcd.setCursor(0,1);
 //value[0]= digitalRead(Interruptor1);// paso a digital el interruptor
 //value[1]= digitalRead(Interruptor2);
 //value[2]= digitalRead(Interruptor3);
-//sensors.requestTemperatures();   //envía el comando para obtener las temperaturas
+sensors.requestTemperatures();   //envía el comando para obtener las temperaturas
 //float temp1= sensors.getTempC(address1);//Se obtiene la temperatura en °C del sensor 1
 //float temp2= sensors.getTempC(address2);//Se obtiene la temperatura en °C del sensor 2
-//float temp3= sensors.getTempC(address3);//Se obtiene la temperatura en °C del sensor 3
-
+float temp3= sensors.getTempC(address4);//Se obtiene la temperatura en °C del sensor 3
+Serial.print(temp3);
 if(ReadButtons()==BUTTON_RIGHT)
   Menu_Temp(ChoiceButton);
 /*
