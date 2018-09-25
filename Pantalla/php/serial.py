@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import serial
 
 
@@ -15,3 +16,6 @@ read_serial=ser.readline()
         #print s[0]
 
 print read_serial
+=======
+print("Hola")
+>>>>>>> a1935f068a33534f90335cc9cea8c9e97a322d4f

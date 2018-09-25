@@ -81,7 +81,7 @@ float B;
 void setup() {
 
 int i;
-delay(1000);
+delay(2000);
 Serial.begin(115200);
 sensors.begin();               //Se inicia el sensor
 //pinMode(Interruptor1, INPUT);
