@@ -1,4 +1,5 @@
  $(document).ready(function(){
+    alert(params['ferm'])
    var refreshId = setInterval(refrescarTablaEstadoSala, 30000);
    $("#boton").on('click',function(){
    });
