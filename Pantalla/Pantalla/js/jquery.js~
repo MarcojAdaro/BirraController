@@ -1,0 +1,29 @@
+ $(document).ready(function(){
+   var refreshId = setInterval(refrescarTablaEstadoSala, 30000);
+   $("#boton").on('click',function(){
+   	
+   });
+
+   $.ajaxSetup({ cache: false });
+ });
+
+
+ function refrescarTablaEstadoSala() {
+
+  $("#temperatura").empty();	
+  //$("#temperatura").html("puto");
+
+  $.ajax({
+      type: 'POST',
+      dataType: "text",
+      url: 'php/Temp.php',
+      data :{'modo':"Update"}
+    })
+    .done(function(listas_rep){
+	
+    	$('#temperatura').html(listas_rep+"°C")
+    }) 
+	.fail(function(){
+		alert("fallamos")
+});
+}

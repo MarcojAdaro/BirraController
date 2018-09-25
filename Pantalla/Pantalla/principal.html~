@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+
+<head>
+		<title>TOSKA Cerveceria</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<script src="css/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<a href="fermentador.html?ferm=1"><button type="button" class="btn btn-primary btn-lg btn-block">Fermentador 1</button></a>
+		<button type="button" class="btn btn-default btn-lg btn-block">Fermentador 2</button>
+		<button type="button" class="btn btn-primary btn-lg btn-block">Fermentador 3</button>
+
+	</body>
+		
+</html>
