@@ -12,9 +12,9 @@
   			<div class="jumbotron">
     		<table align="center">
         <tr>
-         
+         	<td><button type="button" class="btn btn-outline btn-default" onclick="history.go(-1); return false;"><span class="glyphicon glyphicon-ban-circle"></span>VOLVER </button>
                 <h4 align="center">Fermentacion</h4>
-         
+         </td>
 
             <tr>
               <td>
@@ -49,14 +49,16 @@
               </td>
             
 
-              <td width="40px"></td>
+              <td width="20px"></td>
               <td>
               <td><button>+</button></td>
               <td width="60px">
                 <textarea class="form-control" rows="1">17</textarea>
               </td>
               <td><button>-</button></td>
-    		      </td>
+              <td width="10">
+              <td><button id="Confirmar" class="btn btn-success">Cocinar</button></td>
+             </td>
             </tr>
         </tr>    
        </table>
@@ -88,7 +90,6 @@
             
             <tr>
               <td>
-                
                 <td><button>+</button></td>
                 <td width="60px">
                    <textarea class="form-control" rows="1">18</textarea>
@@ -97,14 +98,17 @@
               </td>
             
 
-              <td width="40px"></td>
+              <td width="20px"></td>
               <td>
               <td><button>+</button></td>
               <td width="60px">
                 <textarea class="form-control" rows="1">4</textarea>
               </td>
               <td><button>-</button></td>
-              </td>
+              <td width="10">
+              <td><button id="Cancelar" class="btn btn-danger">Cancelar</button>  </td>
+				</td>
+              
             </tr>
         </tr>
         </table>
