@@ -4843,7 +4843,8 @@ input[type="button"].btn-block {
 
 .jumbotron {
   margin-bottom: 2rem;
-  background-color: #e9ecef;
+  background-color: #383736;
+  color: white;
   border-radius: 0.3rem;
 }
 
@@ -8984,6 +8985,7 @@ a.text-dark:hover, a.text-dark:focus {
   height: 10rem;
   border-radius: 50%;
   background: white;
+  color: black;
   display: flex;
   justify-content: center;
   align-items: center;
