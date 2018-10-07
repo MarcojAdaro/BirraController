@@ -1,14 +1,10 @@
  $(document).ready(function(){
-
-    url = document.URL;
-    url = String(url.match(/\?+.+/));
-    url = url.replace("?", "");
-
-    alert(url)
    var refreshId = setInterval(refrescarTablaEstadoSala, 30000);
    $("#boton").on('click',function(){
+   	
    });
 
+   $.ajaxSetup({ cache: false });
  });
 
 
@@ -20,29 +16,14 @@
   $.ajax({
       type: 'POST',
       dataType: "text",
-      url: 'php/prueba.py',
+      url: 'php/Temp.php',
+      data :{'modo':"Update"}
     })
     .done(function(listas_rep){
-	alert(listas_rep)
-    	$('#temperatura').html(listas_rep)
+	
+    	$('#temperatura').html(listas_rep+"°C")
     }) 
 	.fail(function(){
 		alert("fallamos")
-		});
-	}
-      u
-	
-	/*
-      rl: 'php/updateTemp.php',
-    })
-    .done(function(temp){
-    	$('#temperatura').html(temp+"ºC")
-    })
-    .fail(function(){
-      alert("Fallamos")
-
-
-    })*/
-
+});
 }
-
