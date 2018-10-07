@@ -548,6 +548,7 @@ pre code {
 
 .container {
   width: 100%;
+  height:100%; 
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
@@ -1751,6 +1752,8 @@ pre code {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar;
+    background-color: #383736;
+  color: white;
   }
   .table-responsive-sm > .table-bordered {
     border: 0;
@@ -1799,9 +1802,12 @@ pre code {
 .table-responsive {
   display: block;
   width: 100%;
+
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
+  background-color: #383736;
+  color: white;
 }
 
 .table-responsive > .table-bordered {
@@ -4219,7 +4225,7 @@ input[type="button"].btn-block {
   padding-left: 0.5rem;
 }
 
-.navbar-expand > .container,
+.navbar-expand > .iner,
 .navbar-expand > .container-fluid {
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
@@ -4842,6 +4848,8 @@ input[type="button"].btn-block {
 }
 
 .jumbotron {
+	height: auto;
+	
   margin-bottom: 2rem;
   background-color: #e9ecef;
   border-radius: 0.3rem;
