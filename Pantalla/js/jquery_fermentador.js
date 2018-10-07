@@ -3,10 +3,11 @@
   url = document.URL;
   var res = url.split("=");
   //alert(res[1])
-  $("h3").append(" "+res[1])
+  $("h1").append(" "+res[1])
 
    var refreshId = setInterval(refrescarTablaEstadoSala, 30000);
    $("#boton").on('click',function(){
+   		window.location.href = "SetTemp.html?ferm="+res[1];
    });
 
  });
