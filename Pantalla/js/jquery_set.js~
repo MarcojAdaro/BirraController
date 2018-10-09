@@ -1,5 +1,10 @@
  $(document).ready(function(){	
 	
+	url = document.URL;
+  	var res = url.split("=");
+
+  	$("h2:eq(0)").append(" "+res[1])
+
 	$(".Suma").on('click',function(){
 		
 		var tempMax= $(this).parent().next().children().html();
@@ -22,16 +27,14 @@
 	});
 	
 	$("#cocinar").on('click',function () {
-		
-		
-		
+				
 		VTemp= ($('textarea:eq(0)').html())+","+($('textarea:eq(1)').html())+","+($('textarea:eq(2)').html())+","+($('textarea:eq(3)').html());
-		
+	
 		$.ajax({
       	type: 'POST',
       	dataType: "json",
       	url: 'php/Temp.php',
-      	data : {'modo':"Set",'temp':VTemp,'fermentador':"3"}
+      	data : {'modo':"Set",'temp':VTemp,'fermentador':res[1]}
     	})
     	.done(function(){
 	 		alert("Exito!!: Estamos cocinando")

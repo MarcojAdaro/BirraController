@@ -3,7 +3,7 @@
 	url = document.URL;
   	var res = url.split("=");
 
-  	$("h2").append(" "+res[1])
+  	$("h2:eq(1)").append(" "+res[1])
 
 	$(".Suma").on('click',function(){
 		
