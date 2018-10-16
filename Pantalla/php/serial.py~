@@ -1,0 +1,27 @@
+import serial
+import time
+
+#arduino=serial.Serial('/dev/ttyACM0',baudrate=9600, timeout = 3.0)
+#arduino.open()
+print "chau" 
+param= open('Parametros.txt','r+' )
+temp=open('Temperatura.txt','r+')
+
+#while True:
+param.seek(48)
+p=param.read(1)
+     
+if p=="1":
+	print "hola"      
+#else:
+	#print	p
+      	
+     # arduino.write(var)
+      #time.sleep(0.1)
+      #while arduino.inWaiting() > 0:
+         #   txt += arduino.read(1)
+            #print txt
+            #txt = ''
+#arduino.close()
+param.close()
+temp.close()

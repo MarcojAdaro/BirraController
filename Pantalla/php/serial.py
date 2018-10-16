@@ -1,21 +1,32 @@
-<<<<<<< HEAD
 import serial
+import time
+
+arduino=serial.Serial('/dev/ttyACM0',baudrate=9600, timeout = 3.0)
+arduino.open()
+ 
+param= open('Parametros.txt','r+' )
+temp=open('Temperatura.txt','r+')
+
+while True:
+	param.seek(48)
+	p=param.read(1)
+	if p=="0":
+		while arduino.inWaiting() > 0:
+			t = arduino.readline()
+	else:
+	
+	
+queda leer el numero correspondiente a la linea del fermentador a cambiar pueden ser varios entonces hay que parsear y mandarle a la arudino
+ej "123" cambiar los 3 fermendaroes 			
+      	
+     # arduino.write(var)
+      #time.sleep(0.1)
+      #while arduino.inWaiting() > 0:
+         #   txt += arduino.read(1)
+            #print txt
+            #txt = ''
+#arduino.close()
 
 
-
-ser = serial.Serial('/dev/ttyUSB0',9600)
-
-#s = [0]
-
-#while True:
-
-read_serial=ser.readline()
-
-        #s[0] = str(int (ser.readline(),16))
-
-        #print s[0]
-
-print read_serial
-=======
-print("Hola")
->>>>>>> a1935f068a33534f90335cc9cea8c9e97a322d4f
+param.close()
+temp.close()

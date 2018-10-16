@@ -5,7 +5,7 @@ ser = serial.Serial('/dev/ttyUSB0',115200)
 
 file = open ("/var/www/html/Pantalla/php/Archivo.txt",'r+')
 
-file.write ("   ")
+#file.write ("   ")
 while 1:
 	file.seek(0)
 	read_serial=ser.readline(5)
