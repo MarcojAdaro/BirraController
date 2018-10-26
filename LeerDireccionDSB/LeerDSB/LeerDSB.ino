@@ -1,6 +1,6 @@
 #include <OneWire.h>
 
-OneWire ourWire(3);                //Se establece el pin 2  como bus OneWire
+OneWire ourWire(D5);                //Se establece el pin 2  como bus OneWire
 
 void setup(void) {
   Serial.begin(9600);
