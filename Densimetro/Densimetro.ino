@@ -1,6 +1,4 @@
 //based on  Basic ESP8266 MQTT example
-
-
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 byte sleepTimeS = 5; // Deep sleep time in seconds

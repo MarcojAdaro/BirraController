@@ -2,9 +2,9 @@
 #include "Adafruit_MQTT.h" 
 #include "Adafruit_MQTT_Client.h" 
 /************************* WiFi Access Point *********************************/ 
-#define WLAN_SSID       "YOURS SSID" 
-#define WLAN_PASS       "PASSWORD" 
-#define MQTT_SERVER      "RPi IP address"  // give static address
+#define WLAN_SSID       "Cavegol" 
+#define WLAN_PASS       "1q2w3e4r5t6y" 
+#define MQTT_SERVER      "192.168.2.137"  // give static address
 #define MQTT_PORT         1883                    
 #define MQTT_USERNAME    "" 
 #define MQTT_PASSWORD         "" 
@@ -52,7 +52,8 @@ void loop() {
    if (subscription == &esp8266_led) { 
      Serial.print(F("Got: ")); 
      Serial.println((char *)esp8266_led.lastread); 
-   } 
+   }  
+  pi_led.publish("Que onda");
  } 
 } 
 // Function to connect and reconnect as necessary to the MQTT server. 
