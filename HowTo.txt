@@ -1,0 +1,55 @@
+*********************************************************
+*************Instalar Raspbian***************************
+*********************************************************
+sudo dd bs=4M if=2017-11-29-raspbian-stretch.img of=/dev/mmcblk0 conv=fsync
+
+*********************************************************
+************Instalar Apache******************************
+*********************************************************
+sudo apt update
+sudo apt upgrade
+sudo apt update
+sudo apt install apache2
+sudo chown -R pi:www-data /var/www/html/
+sudo chmod -R 770 /var/www/html/
+
+*********************************************************
+************Instalar PHP*********************************
+*********************************************************
+sudo apt install php php-mbstring
+sudo rm /var/www/html/index.html
+echo "<?php phpinfo ();?>" > /var/www/html/index.php
+
+*********************************************************
+************Instalar MySql*******************************
+*********************************************************
+sudo apt install mysql-server php-mysql
+
+*********************************************************
+***********Instalar MQTT*********************************
+*********************************************************
+wget http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key
+sudo apt-key add mosquitto-repo.gpg.key
+cd /etc/apt/sources.list.d/
+sudo wget http://repo.mosquitto.org/debian/mosquitto-stretch.list
+sudo apt-get update
+sudo apt-get install mosquitto
+--> If you are getting errors in installing Mosquitto like this.
+    The following packages have unmet dependencies:
+    mosquitto : Depends: libssl1.0.0 (>= 1.0.1) but it is not installable
+    Depends: libwebsockets3 (>= 1.2) but it is not installable
+    E: Unable to correct problems, you have held broken packages.
+    Then use this command to fix issues.
+    sudo apt --fix-broken install 
+sudo apt-get install mosquitto-clients
+systemctl status mosquitto.service 
+
+-->Required library ==> paho-mqtt ,you can install using command.
+    sudo apt-get update
+    sudo apt-get install python python-pip
+    sudo pip install RPi.GPIO paho-mqtt
+
+*********************************************************
+*************Modo kiosco Raspberry***********************
+*********************************************************
+
