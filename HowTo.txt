@@ -52,4 +52,34 @@ systemctl status mosquitto.service
 *********************************************************
 *************Modo kiosco Raspberry***********************
 *********************************************************
+Crea un directorio bin en el home de la cuenta pi:
+        mkdir -p /home/pi/bin
+Seguidamente edita un fichero kiosk.sh en ese directorio bin:
+        nano /home/pi/bin/kiosk.sh
+y añade el siguiente contenido:
+        #!/bin/bash
+        export DISPLAY=:0.0
+        xset s off
+        xset -dpms
+        xset s noblank
+        chromium-browser --noerrdialogs --disable-session-crashed-bubble --disable-infobars --kiosk http://unizar.es
+Debes dar el permiso de ejecución al fichero anterior con este comando:
+        chmod +x /home/pi/bin/kiosk.sh
+Ahora edita un nuevo fichero /home/pi/.config/autostart/kiosk.desktop:
+        nano /home/pi/.config/autostart/kiosk.desktop
+y añádele este contenido:
+        [Desktop Entry]
+        Type=Application
+        Name=Kiosk
+        Comment=
+        Exec=/home/pi/bin/kiosk.sh
+        Terminal=false
+        Hidden=false
+Si el directorio /home/pi/.config/autostart/ no existe, créalo
+        mkdir -p /home/pi/.config/autostart/
+        nano /home/pi/.config/autostart/kiosk.desktop
 
+*********************************************************
+*************NO IP***************************************
+*********************************************************
+https://geekytheory.com/tutorial-raspberry-pi-7-escritorio-remoto-vnc-no-ip
