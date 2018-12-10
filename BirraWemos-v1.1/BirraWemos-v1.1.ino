@@ -6,7 +6,7 @@ int  count;
 char ferms[18];
 
 //-------------------------------------------------------------------------------------------------//
-#define cant 3 //Cantidad de Fermentadores
+#define cant 4 //Cantidad de Fermentadores
 //-------------------------------------------------------------------------------------------------//
 OneWire ourWire(D5);                //Se establece el pin 3  como bus OneWire
 DallasTemperature sensors(&ourWire); //Se declara una variable u objeto para nuestro sensor
@@ -24,10 +24,10 @@ float MinFerm[cant];
 //------------------------------------------------------------------------------------//
 int derecha=0;
 //----------Configuro los pines para los RELES----------------------------------------//
-int RelePin[3]= {D1,D2,D3};
+int RelePin[cant]= {D1,D2,D3,D4};
 //int RelePin1= DG2;
 //int RelePin2= DG3;
-int ReleMotor = D4;
+int ReleMotor = D6;
 int OnOff[cant];
 int Nferm;
 //----------seteo las variables------------------------------------------------------//
@@ -40,9 +40,9 @@ void setup() {
   delay(2000);
   sensors.begin();               //Se inicia el sensor
   Serial.begin(9600);
-  pinMode(RelePin[0], OUTPUT);
-  pinMode(RelePin[1], OUTPUT);
-  pinMode(RelePin[2], OUTPUT);
+  for(i=0;i<cant;i++){
+    pinMode(RelePin[i], OUTPUT);
+  }
   pinMode(ReleMotor, OUTPUT);
   count=0;
   Nferm=0;
@@ -51,12 +51,14 @@ void setup() {
 void loop() {
   
   sensors.requestTemperatures();   //envía el comando para obtener las temperaturas
-  temp[0]= sensors.getTempC(address4);//Se obtiene la temperatura en °C del sensor 1
-  temp[1]= 10+(sensors.getTempC(address4));//Se obtiene la temperatura en °C del sensor 2
-  temp[2]= 20+(sensors.getTempC(address4));//Se obtiene la temperatura en °C del sensor 3
+  temp[0]= sensors.getTempC(address1);//Se obtiene la temperatura en °C del sensor 1
+  temp[1]= sensors.getTempC(address2);//Se obtiene la temperatura en °C del sensor 2
+  temp[2]= sensors.getTempC(address3);//Se obtiene la temperatura en °C del sensor 3
+  temp[3]= sensors.getTempC(address4);//Se obtiene la temperatura en °C del sensor 3
+  
   
   //--------------------------------FERMENTADOR 1 --------------------------------------------//
-  for(int i=0 ; i<3; i++){
+  for(int i=0 ; i<cant; i++){
     //Serial.println("Entre al for");
     //Serial.write("i = "+(char)i);
     //Serial.println(OnOff[i]);
@@ -72,7 +74,7 @@ void loop() {
     }
   }                                      
   
-  if(!OnOff[0] && !OnOff[1] && !OnOff[2]) digitalWrite(ReleMotor, LOW);
+  if(!OnOff[0] && !OnOff[1] && !OnOff[2] && !OnOff[3]) digitalWrite(ReleMotor, LOW);
   count=0;
  
   if(Serial.available()>16){

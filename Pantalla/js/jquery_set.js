@@ -30,24 +30,43 @@
 
 
 	$(".Suma").on('click',function(){
-		
-		var tempMax= $(this).parent().next().children().html();
-		$(this).parent().next().children().empty();
-		
-		if(parseInt(tempMax)>8)
-			$(this).parent().next().children().html(parseInt(tempMax)+1);
-		else 
-			$(this).parent().next().children().html("0"+(parseInt(tempMax)+1));
+		var id = $(this).parent().next().children().attr("id");
+		var tactual= $(this).parent().next().children().html();
+		var sumar=1 ,tmax;
+	
+		if(id.substr(0,3) == "Min"){// Sabiendo el id de la temperatura que vamos a cambiar
+			var tmax = $("#Max"+id.substr(3)).html() // Extramos la temperatura correspondiente al mismo modo, asi obtenemos// Siempre la temperatura min y max ya sea de maduracion como fermentacion	
+			var tmin = tactual
+			if(++tmin >= tmax)
+				sumar=0								
+		}
+
+
+		//$(this).parent().next().children().empty();
+		if(sumar)
+			if(parseInt(tactual)>8)
+				$(this).parent().next().children().html(parseInt(tactual)+1);
+			else 
+				$(this).parent().next().children().html("0"+(parseInt(tactual)+1));
 	});
 
 	$(".Resta").on('click',function(){
-		
-		var tempMin= $(this).parent().prev().children().html();
-		
-		if(parseInt(tempMin)>10)
-			$(this).parent().prev().children().html(parseInt(tempMin)-1);	
-		else
-			$(this).parent().prev().children().html("0"+(parseInt(tempMin)-1));	
+		var id = $(this).parent().prev().children().attr("id");
+		var tactual= $(this).parent().prev().children().html();
+		var sumar=1;
+
+		if(id.substr(0,3) == "Max"){// Sabiendo el id de la temperatura que vamos a cambiar
+			var tmin = $("#Min"+id.substr(3)).html() // Extramos la temperatura correspondiente al mismo modo, asi obtenemos// Siempre la temperatura min y max ya sea de maduracion como fermentacion	
+			var tmax = tactual
+			if(tmin >= --tmax)
+				sumar=0								
+		}
+
+		if(sumar)
+			if(parseInt(tactual)>10)
+				$(this).parent().prev().children().html(parseInt(tactual)-1);	
+			else
+				$(this).parent().prev().children().html("0"+(parseInt(tactual)-1));	
 	});
 	
 	$("#cocinar").on('click',function () {
@@ -61,7 +80,6 @@
       	data : {'modo':"Set",'temp':VTemp,'fermentador':res[1]}
     	})
     	.done(function(){
-	 		alert("Exito!!: Estamos cocinando")
 	 		$("#cocinar").prop('disabled', false);
 	 		window.history.back();
     	}) 

@@ -9007,4 +9007,49 @@ a.text-dark:hover, a.text-dark:focus {
   font-size: 1rem;
   font-weight: bold;
 }
+
+.botonFer{
+  width:150px;
+  height:150px;
+  background-color:#E5E822;
+  margin: 5px;
+  padding:10px;
+  border-radius: 50px;
+  font-size:84px;
+  line-height:35px;
+  text-transform: uppercase;
+  float:left;
+}
+.botonFer:hover{
+  opacity: 0.50;
+  -moz-opacity: .50;
+  filter:alpha (opacity=50);
+}
+.botonFer a{
+  color:#000;
+  text-decoration:none;
+  padding:5px 5px 5px 0;
+ 
+}
+.botonFer p{
+  color:#000;
+  text-decoration:none;
+  padding:5px 5px 5px 0;
+  position : relative;
+  left : 30%;
+ 
+}
+
+.trans{
+  width: 400px;
+  position : relative;
+  left : 30%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+}
+.trans a{
+ color:#000;
+
+}
 /*# sourceMappingURL=bootstrap.css.map */
