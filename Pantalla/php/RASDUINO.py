@@ -47,7 +47,7 @@ while True:
 			arduino.write(p[x]+","+c+'\n')
 			time.sleep(0.1)
 		param.seek(48) 						# despues de leer todo posiciono en la ultma linea
-		param.write("0,0,0") 				# y borro lo que estaba antes 
+		param.write("0,0,0,0") 				# y borro lo que estaba antes 
 	
 arduino.close()
 param.close()
