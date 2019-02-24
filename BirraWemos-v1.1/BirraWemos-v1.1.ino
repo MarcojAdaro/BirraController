@@ -8,7 +8,7 @@ char ferms[18];
 //-------------------------------------------------------------------------------------------------//
 #define cant 4 //Cantidad de Fermentadores
 //-------------------------------------------------------------------------------------------------//
-OneWire ourWire(D5);                //Se establece el pin 3  como bus OneWire
+OneWire ourWire(D5);                
 DallasTemperature sensors(&ourWire); //Se declara una variable u objeto para nuestro sensor
 //----------Seteo las direcciones de los sensores--------------------------------------------------//
 DeviceAddress address1 = {0x28, 0xFF, 0x6B, 0x10, 0x86, 0x16, 0x5, 0xDB};//dirección del sensor 1
@@ -46,6 +46,16 @@ void setup() {
   pinMode(ReleMotor, OUTPUT);
   count=0;
   Nferm=0;
+
+  for(i=0;i<cant;i++){
+    MaxFerm[i]=22;
+    MinFerm[i]=18;
+    MaxMad[i]=22;
+    MinMad[i]=22;
+    value[i]=0;      
+    OnOff[i]=0;
+  }
+  
 }
 
 void loop() {
@@ -56,24 +66,22 @@ void loop() {
   temp[2]= sensors.getTempC(address3);//Se obtiene la temperatura en °C del sensor 3
   temp[3]= sensors.getTempC(address4);//Se obtiene la temperatura en °C del sensor 3
   
-  
   //--------------------------------FERMENTADOR 1 --------------------------------------------//
+
   for(int i=0 ; i<cant; i++){
-    //Serial.println("Entre al for");
-    //Serial.write("i = "+(char)i);
-    //Serial.println(OnOff[i]);
+
     if(OnOff[i]==1){
   
       fermentar(0,ReleMotor,RelePin[i], temp[i],value[i],MaxFerm[i],MinFerm[i],MaxMad[i],MinMad[i]);
       Serial.print(i);
-      Serial.print(temp[i]); 
+      Serial.print(temp[i]);
       }
     else{
       digitalWrite(RelePin[i], LOW);
-    
     }
+    delay(300); 
   }                                      
-  
+    
   if(!OnOff[0] && !OnOff[1] && !OnOff[2] && !OnOff[3]) digitalWrite(ReleMotor, LOW);
   count=0;
  
@@ -103,14 +111,16 @@ void loop() {
 }
  
 void fermentar(int n_ferm ,int Motor, int Pin, float temp,int value,float f_max,float f_min,float m_max,float m_min){
-
+ 
   if(value==1){ // entro en modo fermentacion
     if (temp>=f_max){//------------------------------> camibiar temperatura minima modo fermentador 
       digitalWrite(Motor, HIGH);
       digitalWrite(Pin, HIGH);   //  prendo rele 
+      Serial.println("PRENDO EL RELE");
       //apagar[n_ferm]=false;
-    }else if (temp<f_min){
+    }else if (temp<(((f_max-f_min)/2)+f_min)){
       digitalWrite(Pin, LOW);   //  apago rele 
+      Serial.println("APAGO EL RELE");
       //apagar[n_ferm]=true;
       }
   }if(value==0) { //entro en modo maduracion
@@ -118,7 +128,7 @@ void fermentar(int n_ferm ,int Motor, int Pin, float temp,int value,float f_max,
       digitalWrite(Motor, HIGH);
       digitalWrite(Pin, HIGH);   // prendo rele 
       //apagar[n_ferm]=false;
-    }else if (temp<m_min){
+    }else if (temp<(((m_max-m_min)/2)+m_min)){
       digitalWrite(Pin, LOW);    //apago el rele 
       //apagar[n_ferm]=true;
     }
