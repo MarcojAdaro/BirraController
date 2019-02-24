@@ -9,7 +9,7 @@ arduino=serial.Serial('/dev/ttyUSB0', baudrate=9600, timeout = 3.0)
 
 temp=open('Temperatura.txt','r+')
 a=0
-
+t=""
 '''def on_connect(client, userdata, flags, rc): 
    print("Connected with result code " + str(rc)) 
    client.subscribe("/leds/pi") 
@@ -31,12 +31,25 @@ while True:
 	if p[0]=="0":							#si el primero es 0, no hay nada que enviar y solo escucho a la arduino
 		while arduino.inWaiting() > 0:
 			print "entro al wait"			
-			t = arduino.read(1) 			#Leo que fermentador es
+			tempe = ""
+			val = 0
+			while t =="" or t!="l":
+				t = arduino.read(1) 			#Leo que fermentador es
 			print t
-			temp.seek(int(t)*6) 			# Dependiendo el fermentador me posiciono en la linea
-			t = arduino.read(5)				# Leo la linea de determinado fermentador
-			print t
-			temp.write(t)
+			time.sleep(1)
+			if t == "l":
+				t = arduino.read(1) 			#Leo que fermentador es
+				temp.seek(int(t)*6) 			# Dependiendo el fermentador me posiciono en la linea
+				t = arduino.read(1) 			
+				while t!="l":
+					val++
+					tempe=tempe+t
+					time.sleep(1)
+					t = arduino.read(1) 			#Leo que fermentador es
+					print tempe
+				if val <5:
+					tempe="0"+tempe
+				temp.write(tempe)
 		#a=a+1
    		#time.sleep(1)  						# Delay for about 1 sec to debounce. 
    		#client.publish('/leds/esp8266', 'TOGGLE'+str(a))	#Recibo la publicacion							# Escribo la temp leida en el txt
