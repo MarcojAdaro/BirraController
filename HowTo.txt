@@ -83,3 +83,7 @@ Si el directorio /home/pi/.config/autostart/ no existe, créalo
 *************NO IP***************************************
 *********************************************************
 https://geekytheory.com/tutorial-raspberry-pi-7-escritorio-remoto-vnc-no-ip
+
+*********************************************************
+*************Agregar Rasduino al inicio******************
+*********************************************************

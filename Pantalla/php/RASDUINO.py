@@ -7,9 +7,16 @@ import paho.mqtt.client as mqtt
 arduino=serial.Serial('/dev/ttyUSB0', baudrate=9600, timeout = 3.0)
  
 
-temp=open('Temperatura.txt','r+')
+temp=open('/var/www/html/php/Temperatura.txt','r+')
 a=0
+t=""
+param= open('/var/www/html/php/Parametros.txt','r+' )
+param.seek(64)                                          # despues de leer tod$
+param.write("1,2,3,4")                          # y borro lo que estaba antes
+param.close()
 
+while arduino.inWaiting()>0:
+	arduino.readline()
 '''def on_connect(client, userdata, flags, rc): 
    print("Connected with result code " + str(rc)) 
    client.subscribe("/leds/pi") 
@@ -22,21 +29,33 @@ client.connect('localhost', 1883, 60)
 client.loop_start()'''
 
 while True:
-	param.close()
-	time.sleep(5)
-	param= open('Parametros.txt','r+' )
+	param= open('/var/www/html/php/Parametros.txt','r+' )
 	param.seek(64)							# Posiciona en la ultima linea del txt
 	p=param.read(5)							#Leo la ultima linea
 	p=p.split(',')							#Los fermentadores estan separados por coma
 	if p[0]=="0":							#si el primero es 0, no hay nada que enviar y solo escucho a la arduino
 		while arduino.inWaiting() > 0:
 			print "entro al wait"			
-			t = arduino.read(1) 			#Leo que fermentador es
+			tempe=""
+			val=0
+			while t=="" or t!='l':
+				t=arduino.read(1)
 			print t
-			temp.seek(int(t)*6) 			# Dependiendo el fermentador me posiciono en la linea
-			t = arduino.read(5)				# Leo la linea de determinado fermentador
-			print t
-			temp.write(t)
+			time.sleep(1)
+			if t=='l':
+				t=arduino.read(1)
+				temp.seek(int(t)*6)
+				t=arduino.read(1)
+				while t!='l':
+					val=val+1
+					tempe=tempe+t
+					time.sleep(1)
+					t=arduino.read(1)
+					print tempe
+				if val<5:
+					tempe="0"+tempe
+				temp.write(tempe)
+			break
 		#a=a+1
    		#time.sleep(1)  						# Delay for about 1 sec to debounce. 
    		#client.publish('/leds/esp8266', 'TOGGLE'+str(a))	#Recibo la publicacion							# Escribo la temp leida en el txt
@@ -51,7 +70,7 @@ while True:
 			time.sleep(0.1)
 		param.seek(64) 						# despues de leer todo posiciono en la ultma linea
 		param.write("0,0,0,0") 				# y borro lo que estaba antes 
-
+		param.close()
 	
 arduino.close()
 temp.close()
