@@ -83,7 +83,14 @@ Si el directorio /home/pi/.config/autostart/ no existe, créalo
 *************NO IP***************************************
 *********************************************************
 https://geekytheory.com/tutorial-raspberry-pi-7-escritorio-remoto-vnc-no-ip
+https://www.noip.com/support/knowledgebase/how-to-configure-your-no-ip-hostname/?gclid=Cj0KCQjw1pblBRDSARIsACfUG12q335HvEGoF6INyFRtYixUWT1LMYogZZhQeZDUyHySLzm9JXw8bOkaAu7yEALw_wcB
 
 *********************************************************
 *************Agregar Rasduino al inicio******************
 *********************************************************
+
+
+*********************************************************
+*************Modificar Red desde SD**********************
+*********************************************************
+el archivo se llama dhcpcd.conf y ahi pones SSID y PASS
